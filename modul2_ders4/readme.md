@@ -73,4 +73,30 @@ Kullanıcıların `.env` dosyasını nasıl oluşturacağını gösteren örnek 
 
 </pre>
 
+## Sohbet Testi 
+
+test amacıyla oluşturulan python kodunu çalıştırın : 
+
+```bash
+python test_client.py
+```
+
+Aşağıda örnek bir sobhet geçmişi var : 
+<pre>
+Yeni bir sohbet oturumu başlatılıyor...
+Oturum başarıyla başlatıldı. ID: ssn_83f41b47-6b9c-4a36-ac7d-89e3684da777
+Sohbete başlayabilirsiniz. Çıkmak için 'çıkış' yazın.
+--------------------------------------------------
+Siz: Merhaba benim adım Şadi Evren ŞEKER.
+AI : Merhaba Şadi Evren ŞEKER! Size nasıl yardımcı olabilirim?
+Siz: Adımı hatırlıyor musun?
+AI : Evet, adınızı hatırlıyorum. Şadi Evren ŞEKER, size nasıl yardımcı olabilirim?
+Siz: Harika teşekkürler. 
+AI : Rica ederim! Size başka nasıl yardımcı olabilirim?
+Siz: çıkış  
+Sohbet sonlandırılıyor...
+--------------------------------------------------
+Sunucudaki ssn_83f41b47-6b9c-4a36-ac7d-89e3684da777 oturumu temizleniyor...
+Oturum başarıyla temizlendi. Hoşça kalın!
+</pre>
 

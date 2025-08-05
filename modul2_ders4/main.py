@@ -1,3 +1,12 @@
+import sys
+import os
+
+# BU 3 SATIRI YENİ EKLEDİK
+# Projenin kök dizinini (bu dosyanın bulunduğu dizin) Python'un arama yoluna ekliyoruz.
+# Bu sayede 'api', 'core', 'services' gibi modüller her zaman bulunur.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+# --- GERİ KALAN KOD AYNI ---
 from fastapi import FastAPI
 from api.v1.endpoints import sessions
 
