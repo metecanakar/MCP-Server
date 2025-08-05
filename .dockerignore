@@ -1,0 +1,19 @@
+# Sanal ortam klasörü
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Hassas ortam değişkenleri dosyası
+.env
+
+# VSCode ayarları
+.vscode/
+
+# GitHub Actions
+.github/
+
+# Codespaces ayarları
+.devcontainer/
