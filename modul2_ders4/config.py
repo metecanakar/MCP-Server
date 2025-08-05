@@ -8,4 +8,5 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 if not OPENAI_API_KEY:
+    # Uygulama başlarken uyarı verelim ki anahtarın eksik olduğu anlaşılsın.
     print("UYARI: OPENAI_API_KEY ortam değişkeni bulunamadı. Lütfen .env dosyanızı kontrol edin.")

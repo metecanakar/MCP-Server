@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: "MCP - Model Context Protocol Sunucusu API"
+  description: "Yapay zeka ile durum bilgisi tutan (stateful) sohbetler için geliştirilmiş aracı (gateway) sunucusu."
+  version: "1.0.0"
+
+servers:
+  - url: "/v1"
+    description: "Versiyon 1 API"
+
+tags:
+  - name: "Sessions"
+    description: "Sohbet oturumlarını yönetmek için operasyonlar."
+
+paths:
+  /sessions:
+    post:
+      tags:
+        - "Sessions"
+      summary: "Yeni bir sohbet oturumu başlatır."
+      description: "Yeni, boş bir konuşma oturumu başlatır ve bu oturum için kullanılacak benzersiz bir oturum ID'si döndürür."
+      responses:
+        '201':
+          description: "Oturum başarıyla oluşturuldu."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+  
+  /sessions/{session_id}:
+    delete:
+      tags:
+        - "Sessions"
+      summary: "Belirtilen sohbet oturumunu siler."
+      description: "Belirtilen oturumu ve sunucuda tutulan tüm konuşma geçmişini kalıcı olarak siler."
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema:
+            type: string
+            example: "ssn_a1b2c3d4e5f6"
+          description: "Silinecek olan oturumun ID'si."
+      responses:
+        '204':
+          description: "Oturum başarıyla silindi. Yanıt gövdesi boş."
+        '404':
+          description: "Belirtilen session_id bulunamadı."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /sessions/{session_id}/chat:
+    post:
+      tags:
+        - "Sessions"
+      summary: "Yapay zeka ile sohbet eder."
+      description: "Mevcut bir oturumda kullanıcıdan yeni bir mesaj alır, bağlamı işler, yapay zekadan yanıt alır ve bu yanıtı döndürür."
+      parameters:
+        - in: path
+          name: session_id
+          required: true
+          schema:
+            type: string
+            example: "ssn_a1b2c3d4e5f6"
+          description: "Aktif konuşma oturumunun ID'si."
+      requestBody:
+        description: "Yapay zekaya gönderilecek kullanıcı mesajı."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMessage'
+      responses:
+        '200':
+          description: "Yapay zeka yanıtı başarıyla oluşturuldu."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIResponse'
+        '404':
+          description: "Belirtilen session_id bulunamadı."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: "Yapay zeka servisi şu anda kullanılamıyor."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    SessionResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+          description: "Oluşturulan yeni oturumun benzersiz ID'si."
+          example: "ssn_a1b2c3d4e5f6"
+    
+    UserMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          description: "Kullanıcının gönderdiği metin mesajı."
+          example: "Merhaba, bana bir fıkra anlatır mısın?"
+      required:
+        - message
+
+    AIResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: "Yapay zeka modelinin ürettiği metin yanıtı."
+          example: "Tabii, Temel bir gün..."
+      required:
+        - response
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: "Hatanın açıklaması."
+          example: "Session not found."
