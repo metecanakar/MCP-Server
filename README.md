@@ -39,12 +39,19 @@ Bu depo, bir fikrin nasıl adım adım profesyonel bir servise dönüştüğün�
 
 Uygulama, bir aracı (Gateway) mimarisi üzerine kurulmuştur. Kullanıcıdan gelen istekleri karşılar, Redis'ten ilgili hafıza/bağlam bilgisini alır, bu bilgilerle zenginleştirilmiş bir prompt oluşturarak OpenAI gibi bir LLM servisine gönderir ve aldığı yanıtı tekrar hafızayı güncelleyerek kullanıcıya döner.
 
-graph TD
-    A[Kullanıcı] -->|HTTPS İstekleri| B{MCP Gateway (FastAPI)};
-    B <-->|Oturum Verisi & Cache| C[Redis];
-    B -->|Zenginleştirilmiş Prompt| D[OpenAI API];
-    D --> B;
-    B -->|AI Yanıtı| A;
+
+# Modül ve Derslere Hızlı Erişim
+
+* [Modül 1 Ders 1](/modul1_ders1/readme.md) : Stateless API
+* [Modül 1 Ders 2](/modul1_ders2/readme.md) : Gateway Mimarisi
+* [Modül 2 Ders 1](/modul2_ders1/readme.md) : RESTful Prensipleri
+* [Modül 2 Ders 2](/modul2_ders2/readme.md) : REDIS Giriş
+* [Modül 2 Ders 3](/modul2_ders3/readme.md) : Bağlam Depolama, FastAPI ve REDIS, Stateful
+* [Modül 2 Ders 4](/modul2_ders4/readme.md) : LLM Bağlantısı ve /chat
+* [Modül 3 Ders 1](/modul3_ders1/readme.md) : Docker Yapısını Hayata Geçirmek
+
+
+
 
 
 ## Başlarken: GitHub Codespaces ile Kurulum ve Çalıştırma
