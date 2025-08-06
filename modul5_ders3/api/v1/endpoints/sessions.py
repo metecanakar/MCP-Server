@@ -3,8 +3,9 @@ from fastapi import APIRouter, HTTPException, Request
 from schemas import session_schema
 from services import redis_service, openai_service
 
+
 # main.py'da oluşturduğumuz limiter objesini import ediyoruz.
-from main import limiter 
+from core.ratelimiter import limiter
 
 router = APIRouter()
 

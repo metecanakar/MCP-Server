@@ -3,13 +3,10 @@ from fastapi import FastAPI, Request
 from api.v1.endpoints import sessions
 from core.config import APP_TITLE
 
-# --- DEĞİŞİKLİKLER BAŞLANGIÇ ---
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+from core.ratelimiter import limiter
 from slowapi.errors import RateLimitExceeded
+from slowapi import  _rate_limit_exceeded_handler
 
-# İstekleri kullanıcının IP adresine göre gruplayan bir limiter oluşturuyoruz.
-limiter = Limiter(key_func=get_remote_address)
 # --- DEĞİŞİKLİKLER SON ---
 
 

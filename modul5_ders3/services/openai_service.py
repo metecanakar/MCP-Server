@@ -4,6 +4,34 @@ from core.config import OPENAI_API_KEY
 
 openai.api_key = OPENAI_API_KEY
 
+def context_summary(history: list) -> str:
+    if(len(history)>3):
+        system_prompt = {
+        "role": "system",
+        "content": (
+            "summarize the history into a single message."
+            )
+        }
+
+        messages_to_send = [system_prompt] + history  
+        try:
+            if not openai.api_key:
+                raise ValueError("OpenAI API anahtarı ayarlanmamış.")
+
+            response = openai.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=messages_to_send
+            )
+            print("özet:", response.choices[0].message.content)
+            return [{'role': 'user', 'content': response.choices[0].message.content}]
+        except Exception as e:
+            print(f"OpenAI API ile iletişimde hata oluştu: {e}")
+            print("exeption oluştu")
+            return []
+    else:
+        print("history: ",history)
+        return history
+
 def get_ai_response(history: list) -> str | None:
     # --- DEĞİŞİKLİKLER BAŞLANGIÇ: PROMPT INJECTION SAVUNMASI ---
     # Modelimize rolünü ve sınırlarını net bir şekilde anlatan bir sistem mesajı ekliyoruz.
@@ -16,8 +44,9 @@ def get_ai_response(history: list) -> str | None:
         )
     }
     # --- DEĞİŞİKLİKLER SON ---
-    
-    messages_to_send = [system_prompt] + history
+    print("history önce:",history)
+    messages_to_send = [system_prompt] + context_summary(history)
+    print("history sonrası:", history)
 
     try:
         if not openai.api_key:
