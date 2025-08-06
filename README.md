@@ -44,11 +44,15 @@ Uygulama, bir aracı (Gateway) mimarisi üzerine kurulmuştur. Kullanıcıdan ge
 
 * [Modül 1 Ders 1](/modul1_ders1/readme.md) : Stateless API
 * [Modül 1 Ders 2](/modul1_ders2/readme.md) : Gateway Mimarisi
-* [Modül 2 Ders 1](/modul2_ders1/readme.md) : RESTful Prensipleri
+* [Modül 2 Ders 1](/modul2_ders1/readme.md) : RESTful Prensipleri, Swagger UI
 * [Modül 2 Ders 2](/modul2_ders2/readme.md) : REDIS Giriş
 * [Modül 2 Ders 3](/modul2_ders3/readme.md) : Bağlam Depolama, FastAPI ve REDIS, Stateful
 * [Modül 2 Ders 4](/modul2_ders4/readme.md) : LLM Bağlantısı ve /chat
 * [Modül 3 Ders 1](/modul3_ders1/readme.md) : Docker Yapısını Hayata Geçirmek
+* [Modül 3 Ders 2](/modul3_ders2/readme.md) : Open Source LLM Yerelde Çalıştırmak
+* [Modül 3 Ders 3](/modul3_ders3/readme.md) : CI/CD Döngüsünün kurulması
+* [Modül 5 Ders 3](/modul5_ders3/readme.md) : Prompt Injection ve SlowAPI
+* [Modül 5 Ders 4](/modul5_ders4/readme.md) : Bağlam Özetleme Teknikleri
 
 
 
